@@ -1,16 +1,21 @@
-import Image from "next/image"
-import { useMDXComponent } from "next-contentlayer/hooks"
+import Image from "next/image";
+import { useMDXComponent } from "next-contentlayer/hooks";
+import Toc from "./toc";
 
 const components = {
-  Image,
-}
+  Image: (props: any) => <Image alt={props.alt} {...props} />,
+};
 
 interface MdxProps {
-  code: string
+  code: string;
 }
 
 export function Mdx({ code }: MdxProps) {
-  const Component = useMDXComponent(code)
+  const Component = useMDXComponent(code);
 
-  return <Component components={components} />
+  return (
+    <div className="js-toc-content">
+      <Component components={components} />
+    </div>
+  );
 }
