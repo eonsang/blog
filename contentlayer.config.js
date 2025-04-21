@@ -1,4 +1,9 @@
-import { defineDocumentType, makeSource } from "contentlayer/source-files"
+import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import remarkGfm from "remark-gfm";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
+import highlight from "rehype-highlight";
+import rehypePrettyCode from "rehype-pretty-code";
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -10,7 +15,7 @@ const computedFields = {
     type: "string",
     resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
   },
-}
+};
 
 export const Page = defineDocumentType(() => ({
   name: "Page",
@@ -26,7 +31,7 @@ export const Page = defineDocumentType(() => ({
     },
   },
   computedFields,
-}))
+}));
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
@@ -46,9 +51,22 @@ export const Post = defineDocumentType(() => ({
     },
   },
   computedFields,
-}))
+}));
 
 export default makeSource({
   contentDirPath: "./content",
   documentTypes: [Post, Page],
-})
+  mdx: {
+    // remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: "dracula",
+          keepBackground: true,
+          grid: true,
+        },
+      ],
+    ],
+  },
+});
