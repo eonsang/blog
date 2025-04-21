@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Your Name]]></title>
+        <description><![CDATA[Your Name]]></description>
+        <link>https://yoursite.com</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Mon, 21 Apr 2025 05:33:03 GMT</lastBuildDate>
+        <atom:link href="https://yoursite.com/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Preview Mode for Headless CMS]]></title>
+            <description><![CDATA[How to implement preview mode in your headless CMS.]]></description>
+            <link>/posts/preview-mode-headless-cms</link>
+            <guid isPermaLink="true">/posts/preview-mode-headless-cms</guid>
+            <pubDate>Sun, 09 Apr 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Dynamic Routing and Static Regeneration]]></title>
+            <description><![CDATA[How to use incremental static regeneration using dynamic routes.]]></description>
+            <link>/posts/dynamic-routing-static-regeneration</link>
+            <guid isPermaLink="true">/posts/dynamic-routing-static-regeneration</guid>
+            <pubDate>Sat, 04 Mar 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Server and Client Components]]></title>
+            <description><![CDATA[React Server Components allow developers to build applications that span the server and client.]]></description>
+            <link>/posts/server-client-components</link>
+            <guid isPermaLink="true">/posts/server-client-components</guid>
+            <pubDate>Sun, 08 Jan 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Deploying Next.js Apps]]></title>
+            <description><![CDATA[How to deploy your Next.js apps on Vercel.]]></description>
+            <link>/posts/deploying-next-apps</link>
+            <guid isPermaLink="true">/posts/deploying-next-apps</guid>
+            <pubDate>Mon, 02 Jan 2023 00:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>
