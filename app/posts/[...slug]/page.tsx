@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { Mdx } from "@/components/mdx-components";
 import Giscus from "@/components/giscus";
 import TOC from "@/components/toc";
+import Link from "next/link";
 
 interface PostProps {
   params: {
@@ -35,6 +36,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
+    keywords: post.tags,
   };
 }
 
@@ -52,21 +54,28 @@ export default async function PostPage({ params }: PostProps) {
   }
 
   return (
-    <article className="py-6 prose dark:prose-invert max-w-full">
+    <article className="py-10 prose dark:prose-invert max-w-full">
+      <div className="sticky top-4 float-right mr-[-332px]">
+        <TOC markdown={post.body.raw} />
+      </div>
       <h1 className="mb-2">{post.title}</h1>
-
       {post.description && (
-        <p className="text-xl mt-0 text-slate-700 dark:text-slate-200">
+        <p className="text-xl mt-0 text-slate-700 dark:text-slate-200 mb-0">
           {post.description}
         </p>
       )}
-
+      <div className="flex flex-wrap gap-1 mt-2">
+        {post.tags.map((tag) => (
+          <Link href={`/?tag=${tag}`} key={tag}>
+            <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset">
+              {tag}
+            </span>
+          </Link>
+        ))}
+      </div>
       <hr className="my-4" />
       <Mdx code={post.body.code} />
-
       <Giscus />
-
-      <TOC markdown={post.body.raw} />
     </article>
   );
 }

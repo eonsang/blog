@@ -73,20 +73,21 @@ export default function TOC({ markdown }: TOCProps) {
   if (items.length === 0) return <></>;
 
   return (
-    <div className="toc-container p-4 border border-gray-200 rounded-lg dark:border-gray-700 fixed left-[50%] translate-x-[500px] top-10">
-      <h2 className="text-xl font-bold mb-4">목차</h2>
+    <div className="toc-container p-4 border border-gray-100 rounded-lg w-[300px]">
+      <h2 className="text-base font-bold mt-0 mb-1">목차</h2>
+      <hr className="my-2" />
       <nav>
-        <ul className="space-y-2">
+        <ul className="space-y-1 mt-0 list-none pl-0">
           {items.map((item, index) => (
             <li
               key={index}
-              className={`toc-item ${
-                item.depth === 2 ? "ml-0" : item.depth === 3 ? "ml-4" : "ml-8"
+              className={`${
+                item.depth === 2 ? "ml-0" : item.depth === 3 ? "ml-4" : ""
               }`}
             >
               <a
                 href={`#${item.id}`}
-                className={`transition-colors duration-200 ${
+                className={`transition-colors duration-200 truncate text-ellipsis block text-sm  ${
                   activeId === item.id
                     ? "text-blue-600 font-medium dark:text-blue-400"
                     : "text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
