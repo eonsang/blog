@@ -37,47 +37,15 @@ interface TOCProps {
 
 export default function TOC({ markdown }: TOCProps) {
   const items = extractTOC(markdown);
-  const [activeId, setActiveId] = React.useState("");
-  React.useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    const headingElements = items
-      .map((item) => document.getElementById(item.id))
-      .filter(Boolean);
-
-    const callback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveId(entry.target.id);
-        }
-      });
-    };
-
-    // Create an observer for each heading
-    headingElements.forEach((element) => {
-      if (element) {
-        const observer = new IntersectionObserver(callback, {
-          rootMargin: "0px 0px -60% 0px",
-          threshold: 1.0,
-        });
-        observer.observe(element);
-        observers.push(observer);
-      }
-    });
-
-    return () => {
-      observers.forEach((observer) => observer.disconnect());
-    };
-  }, [items]);
 
   if (!markdown) return <></>;
   if (items.length === 0) return <></>;
 
   return (
-    <div className="toc-container p-4 border border-gray-100 rounded-lg w-[300px]">
-      <h2 className="text-base font-bold mt-0 mb-1">목차</h2>
-      <hr className="my-2" />
-      <nav>
-        <ul className="space-y-1 mt-0 list-none pl-0">
+    <div className="toc-container w-full border border-gray-200 rounded-lg">
+      <h2 className="text-base font-bold m-0 p-4">목차</h2>
+      <nav className="border-t border-gray-200 p-4">
+        <ul className="space-y-2 mt-0 mb-0 pl-0 list-none">
           {items.map((item, index) => (
             <li
               key={index}
@@ -87,10 +55,8 @@ export default function TOC({ markdown }: TOCProps) {
             >
               <a
                 href={`#${item.id}`}
-                className={`transition-colors duration-200 truncate text-ellipsis block text-sm  ${
-                  activeId === item.id
-                    ? "text-blue-600 font-medium dark:text-blue-400"
-                    : "text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100"
+                className={`block text-sm no-underline hover:underline ${
+                  item.depth === 2 ? "text-gray-900" : "text-gray-500"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
@@ -100,6 +66,7 @@ export default function TOC({ markdown }: TOCProps) {
                   }
                 }}
               >
+                {item.depth === 3 ? "- " : ""}
                 {item.title}
               </a>
             </li>

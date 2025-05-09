@@ -5,18 +5,22 @@ import { getAllTags } from "@/lib/tags";
 import { allPosts } from "contentlayer/generated";
 
 export const Nav = ({ tag: tagName }: { tag?: string }) => {
-  const tags = getAllTags(allPosts);
+  const tags = getAllTags(allPosts.filter((post) => post.published));
   return (
     <nav>
-      <h2 className="text-orange-500 font-bold mb-2 px-2">태그</h2>
-      <div className="flex flex-col gap-1">
+      <h2 className="text-xl font-bold">Tags</h2>
+      <div className="flex flex-row gap-1.5 mt-4">
         {tags.map((tag) => (
           <Link
             key={tag.name}
             href={`/?tag=${tag.name}`}
-            className={`hover:bg-gray-50 transition-colors py-1.5 px-2 rounded-md text-base ${
-              tag.name === tagName ? "bg-gray-100" : ""
-            }`}
+            className={`
+              inline-flex items-center rounded-md  px-2 py-1 font-medium ring-1
+              ${
+                tag.name === tagName
+                  ? "bg-green-50 text-green-700 ring-green-600/20 ring-inset"
+                  : "bg-gray-50 text-gray-600 ring-gray-500/10 ring-inset"
+              }`}
           >
             {tag.name} ({tag.count})
           </Link>

@@ -1,13 +1,18 @@
-import Link from "next/link";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@/components/analytics";
-import { ModeToggle } from "@/components/mode-toggle";
 import { Header } from "@/components/header";
-import { Nav } from "@/components/nav";
+import localFont from "next/font/local";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const pretendard = localFont({
+  src: "./assets/fonts/PretendardVariable.woff2",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendard",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -20,13 +25,13 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={pretendard.variable}>
       <body
-        className={`antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${inter.className}`}
+        className={`antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${pretendard.className}`}
       >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light">
           <Header />
-          <div className="max-w-4xl mx-auto pb-10 px-4 grid gap-10">
+          <div className="pb-10">
             <main>{children}</main>
           </div>
           <Analytics />
