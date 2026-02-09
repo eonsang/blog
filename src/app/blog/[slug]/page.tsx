@@ -11,7 +11,7 @@ import { TableOfContents } from "@/components/toc";
 import { TagBadge } from "@/components/tag-badge";
 import { SeriesNav } from "@/components/series-nav";
 import Link from "next/link";
-import { DisqusComments } from "@/components/disqus-comments";
+import { GiscusComments } from "@/components/giscus-comments";
 
 export function generateStaticParams() {
   return getPublishedPosts().map((post) => ({
@@ -113,11 +113,7 @@ export default async function PostPage({
         <MDXContent code={post.content} />
       </article>
 
-      <DisqusComments
-        slug={post.slug}
-        title={post.title}
-        permalink={post.permalink}
-      />
+      <GiscusComments />
 
       {relatedPosts.length > 0 && (
         <section className="mt-12 border-t border-border pt-8">
