@@ -1,0 +1,61 @@
+---
+title: Tailwind CSS로 빠르게 UI 만들기
+date: 2025-02-15
+description: Tailwind CSS의 유틸리티 클래스를 활용한 효율적인 UI 개발 방법을 소개합니다.
+tags:
+  - css
+  - tailwind
+  - tutorial
+published: true
+---
+
+# Tailwind CSS로 빠르게 UI 만들기
+
+Tailwind CSS는 유틸리티 퍼스트 CSS 프레임워크로, 클래스 조합만으로 디자인을 완성할 수 있습니다.
+
+## 기본 사용법
+
+HTML에 클래스를 직접 작성합니다:
+
+```html
+<div class="flex items-center gap-4 rounded-lg border p-4 shadow-sm">
+  <img class="h-12 w-12 rounded-full" src="/avatar.jpg" alt="프로필" />
+  <div>
+    <h3 class="font-semibold">홍길동</h3>
+    <p class="text-sm text-gray-500">개발자</p>
+  </div>
+</div>
+```
+
+## 반응형 디자인
+
+브레이크포인트 접두사로 반응형을 쉽게 구현합니다.
+
+```html
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+  <!-- 모바일: 1열, 태블릿: 2열, 데스크톱: 3열 -->
+</div>
+```
+
+## 커스텀 테마
+
+`tailwind.config`에서 프로젝트에 맞는 디자인 토큰을 설정할 수 있습니다.
+
+## 다크 모드
+
+`dark:` 접두사로 다크 모드 스타일을 간단하게 추가합니다:
+
+```html
+<div class="bg-white text-black dark:bg-gray-900 dark:text-white">
+  자동으로 다크 모드를 지원합니다.
+</div>
+```
+
+## 장점
+
+- **빠른 개발 속도**: CSS 파일을 왔다갔다 하지 않아도 됩니다
+- **일관된 디자인**: 미리 정의된 스케일로 일관성 유지
+- **작은 번들 크기**: 사용한 클래스만 포함됩니다
+- **커스터마이징**: 프로젝트 요구사항에 맞게 확장 가능
+
+React와 Next.js 프로젝트에서 특히 궁합이 좋습니다.
